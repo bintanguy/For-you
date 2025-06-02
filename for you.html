@@ -1,0 +1,65 @@
+<h2 style="font-size: 50px; color: blue; font-weight: bold; text-align: center;">
+  SELAMAT ULANG TAHUN 
+</h2>
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Upload & Simpan Gambar</title>
+  <style>
+    .tengah {
+      text-align: center;
+      margin-top: 30px;
+    }
+
+    #preview {
+      width: 800px;
+      border-radius: 10px;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="tengah">
+    <input type="file" accept="image/*" onchange="simpanGambar(event)">
+    <br>
+    <img id="preview" alt="Preview Gambar">
+  </div>
+
+  <script>
+    function simpanGambar(event) {
+      const file = event.target.files[0];
+      const reader = new FileReader();
+
+      reader.onload = function () {
+        const dataUrl = reader.result;
+        localStorage.setItem('gambarTersimpan', dataUrl); // simpan ke localStorage
+        document.getElementById('preview').src = dataUrl; // tampilkan
+      };
+
+      if (file) {
+        reader.readAsDataURL(file);
+      }
+    }
+
+    // Saat halaman dibuka, tampilkan gambar dari localStorage jika ada
+    window.onload = function () {
+      const dataUrl = localStorage.getItem('gambarTersimpan');
+      if (dataUrl) {
+        document.getElementById('preview').src = dataUrl;
+      }
+    };
+  </script>
+
+</body>
+</html>
+<style>
+  body {
+    background: linear-gradient(to top, #871F78, #000000); 
+    color: white;
+  }
+</style>
+<h2 style="font-size: 30px; color: red; font-weight: bold; text-align: center; font-style : italic ;">
+  Semoga Panjang Umur, Sehat Selalu, Dan Ga Gampang Nangis 
+</h2>
